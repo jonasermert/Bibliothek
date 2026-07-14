@@ -1,0 +1,79 @@
+# Misc
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+
+# Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub/
+.pub-cache/
+build/
+
+# Generated
+coverage/
+test/coverage/
+
+# Android
+android/.gradle/
+android/local.properties
+android/key.properties
+*.jks
+*.keystore
+
+# iOS/macOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+
+macos/Pods/
+macos/Flutter/ephemeral/
+
+# Linux
+linux/flutter/ephemeral/
+
+# Windows
+windows/flutter/ephemeral/
+
+# Web
+web/flutter_bootstrap.js
+
+# Firebase
+firebase.json
+.firebaserc
+
+# Secrets
+.env
+.env.*
+*.env
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+
+# Coverage
+lcov.info
+
+# IntelliJ
+*.iml
+
+# Generated icons
+flutter_launcher_icons*
+
+# Generated splash
+flutter_native_splash*
+
+# Temporary
+*.tmp
+*.bak

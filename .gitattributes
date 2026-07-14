@@ -1,0 +1,39 @@
+# Auto detect text files
+* text=auto eol=lf
+
+# Dart
+*.dart text
+
+# YAML
+*.yaml text
+*.yml text
+
+# Markdown
+*.md text
+
+# JSON
+*.json text
+
+# XML
+*.xml text
+
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+
+# Fonts
+*.ttf binary
+*.otf binary
+
+# Archives
+*.zip binary
+
+# Flutter generated
+pubspec.lock text
+
+# Prevent merge conflicts
+*.pbxproj merge=union

@@ -1,0 +1,12 @@
+pre-commit:
+
+  commands:
+
+    format:
+      run: dart format .
+
+    analyze:
+      run: flutter analyze
+
+    tests:
+      run: flutter test
