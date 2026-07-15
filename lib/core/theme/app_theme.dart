@@ -12,13 +12,17 @@ abstract final class AppTheme {
     final scheme = ColorScheme.fromSeed(
       seedColor: seed,
       brightness: brightness,
-      surface: brightness == Brightness.dark ? darkSurface : const Color(0xFFF6F8FA),
+      surface:
+          brightness == Brightness.dark ? darkSurface : const Color(0xFFF6F8FA),
     );
     return ThemeData(
       useMaterial3: true,
       brightness: brightness,
       colorScheme: scheme,
-      scaffoldBackgroundColor: brightness == Brightness.dark ? darkBackground : const Color(0xFFF5F7F8),
+      scaffoldBackgroundColor:
+          brightness == Brightness.dark
+              ? darkBackground
+              : const Color(0xFFF5F7F8),
       cardTheme: CardThemeData(
         elevation: 0,
         margin: EdgeInsets.zero,
@@ -28,18 +32,32 @@ abstract final class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: scheme.surfaceContainerHighest.withValues(alpha: .65),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(18), borderSide: BorderSide.none),
-        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(18), borderSide: BorderSide.none),
-        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(18), borderSide: BorderSide(color: scheme.primary, width: 1.5)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: BorderSide.none,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: BorderSide(color: scheme.primary, width: 1.5),
+        ),
       ),
       navigationBarTheme: NavigationBarThemeData(
         height: 72,
         backgroundColor: scheme.surface,
         indicatorColor: scheme.primaryContainer,
-        labelTextStyle: WidgetStatePropertyAll(TextStyle(fontWeight: FontWeight.w700, color: scheme.onSurface)),
+        labelTextStyle: WidgetStatePropertyAll(
+          TextStyle(fontWeight: FontWeight.w700, color: scheme.onSurface),
+        ),
       ),
       textTheme: const TextTheme(
-        headlineMedium: TextStyle(fontWeight: FontWeight.w900, letterSpacing: -0.8),
+        headlineMedium: TextStyle(
+          fontWeight: FontWeight.w900,
+          letterSpacing: -0.8,
+        ),
         titleLarge: TextStyle(fontWeight: FontWeight.w800),
         titleMedium: TextStyle(fontWeight: FontWeight.w700),
       ),
