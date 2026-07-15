@@ -1,43 +1,78 @@
-# Bibliothek
+# 📚 Bibliothek
 
-Moderne Flutter-Bibliotheksapp mit Open Library, Material 3, Suche, Favoriten, Sternebewertungen und Dark Mode.
+Eine moderne Bücher-App für Android & iOS, gebaut mit Flutter und Material 3. Durchsuche Millionen von Büchern über die
+Open Library, speichere Favoriten und vergib Sternebewertungen – mit elegantem Dark Mode.
+
+---
+
+## Screenshots
+
+<p float="left">
+  <img src="screenshots/Screenshot_1784038340.png" width="22%" />
+  <img src="screenshots/Screenshot_1784038344.png" width="22%" />
+  <img src="screenshots/Screenshot_1784038361.png" width="22%" />
+  <img src="screenshots/Screenshot_1784109956.png" width="22%" />
+</p>
+
+---
+
+## Features
+
+- 🔍 **Buchsuche** via Open Library (kein API-Key erforderlich)
+- ⭐ **Sternebewertungen** für gespeicherte Bücher
+- ❤️ **Favoriten** – lokal gespeichert auf dem Gerät
+- 🌙 **Dark Mode** mit Material 3 Design
+- 🖼️ **Cover-Caching** für schnelle Ladezeiten
 
 ## Architektur
 
-- Feature-first Ordnerstruktur
-- Riverpod für State Management und Dependency Injection
-- Dio für robuste HTTP-Kommunikation
-- GoRouter für Navigation
-- SharedPreferences für lokale Favoriten
-- CachedNetworkImage für Cover-Caching
-- flutter_rating_bar für Bewertungen
+| Bereich               | Technologie        |
+|-----------------------|--------------------|
+| State Management & DI | Riverpod           |
+| Navigation            | GoRouter           |
+| HTTP                  | Dio                |
+| Lokale Speicherung    | SharedPreferences  |
+| Cover-Caching         | CachedNetworkImage |
+| Bewertungen           | flutter_rating_bar |
 
-## Start
+Ordnerstruktur: **Feature-first** (`books`, `favorites`, `settings`)
+
+## Setup
 
 ```bash
-flutter create . --platforms=android,ios,web,macos,windows,linux
 flutter pub get
 flutter run
 ```
 
-`flutter create .` ergänzt lediglich die nativen Plattformordner. Der vorhandene `lib`-Ordner bleibt erhalten.
+> Falls native Plattformordner fehlen:
+> ```bash
+> flutter create . --platforms=android,ios,web,macos,windows,linux
+> ```
+> Der `lib`-Ordner bleibt dabei unverändert erhalten.
 
 ## API
 
-Die App nutzt die öffentliche Open Library Search API ohne API-Key:
+Die App nutzt die öffentliche Open Library Search API:
 
-- Suche: `https://openlibrary.org/search.json`
-- Cover: `https://covers.openlibrary.org/b/id/{coverId}-L.jpg`
-
-## Hinweise
-
-Die angezeigte Verfügbarkeit und Vollständigkeit hängt von den Open-Library-Daten ab. Favoriten werden lokal auf dem Gerät gespeichert.
+| Endpunkt | URL                                                   |
+|----------|-------------------------------------------------------|
+| Suche    | `https://openlibrary.org/search.json`                 |
+| Cover    | `https://covers.openlibrary.org/b/id/{coverId}-L.jpg` |
 
 ## Qualitätssicherung
 
-Ein ausführlicher Quellcode-Audit befindet sich in `TEST_REPORT.md`.
+Einen ausführlichen Code-Audit findest du in [`TEST_REPORT.md`](TEST_REPORT.md).
 
 ```bash
 flutter analyze
 flutter test
 ```
+
+## Hinweise
+
+Die Verfügbarkeit und Vollständigkeit der Buchdaten hängt von Open Library ab. Favoriten und Bewertungen werden
+ausschließlich lokal auf dem Gerät gespeichert.
+
+## Lizenz
+
+Siehe [LICENSE](LICENSE).
