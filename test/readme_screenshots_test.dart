@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:isolate';
 import 'dart:ui' as ui;
 
 import 'package:bibliothek/core/theme/app_theme.dart';
@@ -42,10 +41,7 @@ final books = [
 void main() {
   testWidgets('capture actual library screens for README', (tester) async {
     await tester.runAsync(() async {
-      final flutterUri = await Isolate.resolvePackageUri(
-        Uri.parse('package:flutter/material.dart'),
-      );
-      final sdk = File.fromUri(flutterUri!).parent.parent.parent.parent;
+      final sdk = Directory(Platform.environment['FLUTTER_ROOT']!);
       for (final font in [
         ('Roboto', 'Roboto-Regular.ttf'),
         ('Roboto', 'Roboto-Bold.ttf'),
@@ -80,7 +76,12 @@ void main() {
             key: boundaryKey,
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
-              theme: theme,
+              theme: theme.copyWith(
+                textTheme: theme.textTheme.apply(fontFamily: 'Roboto'),
+                primaryTextTheme: theme.primaryTextTheme.apply(
+                  fontFamily: 'Roboto',
+                ),
+              ),
               home: const LibraryShell(),
             ),
           ),
