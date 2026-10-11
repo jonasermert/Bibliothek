@@ -21,12 +21,16 @@ class CurvedBottomNavigationBar extends StatefulWidget {
       _CurvedBottomNavigationBarState();
 }
 
-class _CurvedBottomNavigationBarState
-    extends State<CurvedBottomNavigationBar> {
+class _CurvedBottomNavigationBarState extends State<CurvedBottomNavigationBar> {
   double? _dragPosition;
 
   double _visualIndex(int index, bool rtl) =>
       (rtl ? widget.destinations.length - 1 - index : index).toDouble();
+
+  double _dip(double position) {
+    final fraction = (position + .5) / widget.destinations.length;
+    return 4 * fraction * (1 - fraction) * 16;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,26 +43,28 @@ class _CurvedBottomNavigationBarState
       child: LayoutBuilder(
         builder: (context, constraints) {
           final tabWidth = constraints.maxWidth / widget.destinations.length;
-          final target = _dragPosition ??
-              _visualIndex(widget.selectedIndex, rtl);
+          final target =
+              _dragPosition ?? _visualIndex(widget.selectedIndex, rtl);
           void updateDrag(DragUpdateDetails details) {
             setState(() {
-              _dragPosition = (details.localPosition.dx / tabWidth - .5)
-                  .clamp(0.0, widget.destinations.length - 1.0);
+              _dragPosition = (details.localPosition.dx / tabWidth - .5).clamp(
+                0.0,
+                widget.destinations.length - 1.0,
+              );
             });
           }
 
           return GestureDetector(
-            onHorizontalDragStart: (_) => setState(() {
-              _dragPosition = _visualIndex(widget.selectedIndex, rtl);
-            }),
+            onHorizontalDragStart:
+                (_) => setState(() {
+                  _dragPosition = _visualIndex(widget.selectedIndex, rtl);
+                }),
             onHorizontalDragUpdate: updateDrag,
             onHorizontalDragCancel: () => setState(() => _dragPosition = null),
             onHorizontalDragEnd: (_) {
               final visual = _dragPosition!.round();
-              final index = rtl
-                  ? widget.destinations.length - 1 - visual
-                  : visual;
+              final index =
+                  rtl ? widget.destinations.length - 1 - visual : visual;
               setState(() => _dragPosition = null);
               widget.onDestinationSelected(index);
             },
@@ -76,17 +82,15 @@ class _CurvedBottomNavigationBarState
                   ),
                   TweenAnimationBuilder<double>(
                     tween: Tween<double>(begin: target, end: target),
-                    duration: reduceMotion || _dragPosition != null
-                        ? Duration.zero
-                        : const Duration(milliseconds: 420),
+                    duration:
+                        reduceMotion || _dragPosition != null
+                            ? Duration.zero
+                            : const Duration(milliseconds: 420),
                     curve: Curves.easeOutCubic,
                     builder: (context, position, child) {
-                      final fraction = (position + .5) /
-                          widget.destinations.length;
-                      final dip = 4 * fraction * (1 - fraction) * 16;
                       return Positioned(
                         left: position * tabWidth + 4,
-                        top: 7 + dip,
+                        top: 7 + _dip(position),
                         width: tabWidth - 8,
                         height: 48,
                         child: IgnorePointer(child: child),
@@ -108,8 +112,9 @@ class _CurvedBottomNavigationBarState
                               ],
                             ),
                             border: Border.all(
-                              color: colors.onPrimaryContainer
-                                  .withValues(alpha: .18),
+                              color: colors.onPrimaryContainer.withValues(
+                                alpha: .18,
+                              ),
                             ),
                           ),
                         ),
@@ -133,15 +138,11 @@ class _CurvedBottomNavigationBarState
                                     type: MaterialType.transparency,
                                     child: InkWell(
                                       borderRadius: BorderRadius.circular(24),
-                                      onTap: () =>
-                                          widget.onDestinationSelected(i),
+                                      onTap:
+                                          () => widget.onDestinationSelected(i),
                                       child: Padding(
                                         padding: EdgeInsets.only(
-                                          top: 19 +
-                                              4 *
-                                                  ((i + .5) / widget.destinations.length) *
-                                                  (1 - (i + .5) / widget.destinations.length) *
-                                                  16,
+                                          top: 19 + _dip(_visualIndex(i, rtl)),
                                           left: 2,
                                           right: 2,
                                         ),
@@ -150,14 +151,24 @@ class _CurvedBottomNavigationBarState
                                             IconTheme(
                                               data: IconThemeData(
                                                 size: 26,
-                                                color: widget.selectedIndex == i
-                                                    ? colors.onPrimaryContainer
-                                                    : colors.onSurfaceVariant,
+                                                color:
+                                                    widget.selectedIndex == i
+                                                        ? colors
+                                                            .onPrimaryContainer
+                                                        : colors
+                                                            .onSurfaceVariant,
                                               ),
-                                              child: widget.selectedIndex == i
-                                                  ? widget.destinations[i].selectedIcon ??
-                                                      widget.destinations[i].icon
-                                                  : widget.destinations[i].icon,
+                                              child:
+                                                  widget.selectedIndex == i
+                                                      ? widget
+                                                              .destinations[i]
+                                                              .selectedIcon ??
+                                                          widget
+                                                              .destinations[i]
+                                                              .icon
+                                                      : widget
+                                                          .destinations[i]
+                                                          .icon,
                                             ),
                                             const SizedBox(height: 12),
                                             Flexible(
@@ -167,9 +178,10 @@ class _CurvedBottomNavigationBarState
                                                 overflow: TextOverflow.ellipsis,
                                                 style: TextStyle(
                                                   fontSize: 11,
-                                                  fontWeight: widget.selectedIndex == i
-                                                      ? FontWeight.w700
-                                                      : FontWeight.w500,
+                                                  fontWeight:
+                                                      widget.selectedIndex == i
+                                                          ? FontWeight.w700
+                                                          : FontWeight.w500,
                                                   color: colors.onSurface,
                                                 ),
                                               ),
@@ -204,16 +216,22 @@ class _CurvedSurfacePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final path = Path()
-      ..moveTo(0, 24)
-      ..quadraticBezierTo(0, 4, 20, 6)
-      ..quadraticBezierTo(size.width / 2, 38, size.width - 20, 6)
-      ..quadraticBezierTo(size.width, 4, size.width, 24)
-      ..lineTo(size.width, size.height - 24)
-      ..quadraticBezierTo(size.width, size.height, size.width - 24, size.height)
-      ..lineTo(24, size.height)
-      ..quadraticBezierTo(0, size.height, 0, size.height - 24)
-      ..close();
+    final path =
+        Path()
+          ..moveTo(0, 24)
+          ..quadraticBezierTo(0, 4, 20, 6)
+          ..quadraticBezierTo(size.width / 2, 38, size.width - 20, 6)
+          ..quadraticBezierTo(size.width, 4, size.width, 24)
+          ..lineTo(size.width, size.height - 24)
+          ..quadraticBezierTo(
+            size.width,
+            size.height,
+            size.width - 24,
+            size.height,
+          )
+          ..lineTo(24, size.height)
+          ..quadraticBezierTo(0, size.height, 0, size.height - 24)
+          ..close();
     canvas.drawShadow(path, Colors.black.withValues(alpha: .18), 6, false);
     canvas.drawPath(path, Paint()..color = color);
     canvas.drawPath(
