@@ -30,7 +30,6 @@ class BookCard extends ConsumerWidget {
               RatingBarIndicator(
                 rating: (book.ratingsAverage ?? 0).clamp(0, 5).toDouble(),
                 itemBuilder: (context, index) => const Icon(Icons.star_rounded, color: Color(0xFFFFC857)),
-                itemCount: 5,
                 itemSize: 18,
               ),
               const SizedBox(height: 10),

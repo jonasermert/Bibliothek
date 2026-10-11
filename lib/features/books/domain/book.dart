@@ -38,9 +38,9 @@ class Book {
     int? integer(String key) {
       final value = json[key];
       return switch (value) {
-        int number => number,
-        num number => number.toInt(),
-        String text => int.tryParse(text),
+        final int number => number,
+        final num number => number.toInt(),
+        final String text => int.tryParse(text),
         _ => null,
       };
     }
@@ -48,8 +48,8 @@ class Book {
     double? decimal(String key) {
       final value = json[key];
       return switch (value) {
-        num number => number.toDouble(),
-        String text => double.tryParse(text),
+        final num number => number.toDouble(),
+        final String text => double.tryParse(text),
         _ => null,
       };
     }
