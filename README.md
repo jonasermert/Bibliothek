@@ -7,12 +7,13 @@ Open Library, speichere Favoriten und vergib Sternebewertungen – mit elegantem
 
 ## Screenshots
 
-<p float="left">
-  <img src="screenshots/Screenshot_1784038340.png" width="22%" />
-  <img src="screenshots/Screenshot_1784038344.png" width="22%" />
-  <img src="screenshots/Screenshot_1784038361.png" width="22%" />
-  <img src="screenshots/Screenshot_1784109956.png" width="22%" />
-</p>
+Die vier Hauptansichten mit der geschwungenen Tab-Leiste und dem Glas-Indikator:
+
+| Entdecken · Hell | Suche · Hell | Favoriten · Dunkel | Einstellungen · Dunkel |
+|:---:|:---:|:---:|:---:|
+| <img src="screenshots/discover-curved-light.png" alt="Entdecken mit geschwungener Tab-Leiste im Hellmodus" width="220" /> | <img src="screenshots/search-curved-light.png" alt="Buchsuche mit aktivem Such-Tab im Hellmodus" width="220" /> | <img src="screenshots/favorites-curved-dark.png" alt="Gespeicherte Favoriten mit aktivem Favoriten-Tab im Dunkelmodus" width="220" /> | <img src="screenshots/settings-curved-dark.png" alt="Einstellungen mit aktivem Einstellungen-Tab im Dunkelmodus" width="220" /> |
+
+Die Screenshots zeigen die Flutter-Oberfläche mit festen Beispieldaten und Cover-Platzhaltern bei einer mobilen Bildschirmgröße von 390 × 844. Buchdaten in der laufenden App werden von Open Library geladen.
 
 ---
 
