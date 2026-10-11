@@ -93,9 +93,9 @@ void main() {
       final boundary =
           boundaryKey.currentContext!.findRenderObject()!
               as RenderRepaintBoundary;
-      final image = await boundary.toImage(pixelRatio: 2);
-      final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
       await tester.runAsync(() async {
+        final image = await boundary.toImage(pixelRatio: 2);
+        final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
         await File(
           'screenshots/$name.png',
         ).writeAsBytes(bytes!.buffer.asUint8List());
@@ -107,8 +107,8 @@ void main() {
             'README_IMAGE:$name:$part:$parts:${encoded.substring(part * 8000, end)}',
           );
         }
+        image.dispose();
       });
-      image.dispose();
     }
 
     Future<void> select(String label) async {
