@@ -55,7 +55,7 @@ void main() {
         loader.addFont(
           File(
             '${sdk.path}/bin/cache/artifacts/material_fonts/${font.$2}',
-          ).readAsBytes().then((bytes) => ByteData.sublistView(bytes)),
+          ).readAsBytes().then(ByteData.sublistView),
         );
         await loader.load();
       }
