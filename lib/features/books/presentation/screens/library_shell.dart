@@ -36,7 +36,7 @@ class _LibraryShellState extends State<LibraryShell> {
           ],
         ),
       ),
-      bottomNavigationBar: NavigationBar(
+      bottomNavigationBar: CurvedBottomNavigationBar(
         selectedIndex: index,
         onDestinationSelected: (value) => setState(() => index = value),
         destinations: const [
@@ -64,3 +64,4 @@ class _LibraryShellState extends State<LibraryShell> {
     );
   }
 }
+import 'package:bibliothek/core/widgets/curved_bottom_navigation_bar.dart';
