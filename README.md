@@ -22,6 +22,7 @@ Open Library, speichere Favoriten und vergib Sternebewertungen – mit elegantem
 - ⭐ **Sternebewertungen** für gespeicherte Bücher
 - ❤️ **Favoriten** – lokal gespeichert auf dem Gerät
 - 🌙 **Dark Mode** mit Material 3 Design
+- 🫧 **Geschwungene Tab-Leiste** mit animiertem Glas-Indikator: Tabs antippen oder den Indikator horizontal zum gewünschten Tab ziehen. Die Sucheingabe bleibt beim Tab-Wechsel erhalten.
 - 🖼️ **Cover-Caching** für schnelle Ladezeiten
 
 ## Architektur
