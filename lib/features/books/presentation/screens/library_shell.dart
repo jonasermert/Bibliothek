@@ -1,3 +1,4 @@
+import 'package:bibliothek/core/widgets/curved_bottom_navigation_bar.dart';
 import 'package:bibliothek/features/books/presentation/screens/home_screen.dart';
 import 'package:bibliothek/features/books/presentation/screens/search_screen.dart';
 import 'package:bibliothek/features/favorites/presentation/screens/favorites_screen.dart';
@@ -29,14 +30,11 @@ class _LibraryShellState extends State<LibraryShell> {
           index: index,
           children: [
             for (var pageIndex = 0; pageIndex < pages.length; pageIndex++)
-              HeroMode(
-                enabled: pageIndex == index,
-                child: pages[pageIndex],
-              ),
+              HeroMode(enabled: pageIndex == index, child: pages[pageIndex]),
           ],
         ),
       ),
-      bottomNavigationBar: NavigationBar(
+      bottomNavigationBar: CurvedBottomNavigationBar(
         selectedIndex: index,
         onDestinationSelected: (value) => setState(() => index = value),
         destinations: const [

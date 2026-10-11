@@ -12,7 +12,7 @@ class SearchScreen extends ConsumerWidget {
     final query = ref.watch(searchQueryProvider);
     final result = ref.watch(searchBooksProvider);
     return CustomScrollView(slivers: [
-      SliverAppBar.large(title: const Text('Bücher suchen'), automaticallyImplyLeading: false),
+      const SliverAppBar.large(title: Text('Bücher suchen'), automaticallyImplyLeading: false),
       SliverPadding(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
         sliver: SliverToBoxAdapter(child: TextField(
